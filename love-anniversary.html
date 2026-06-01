@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>४९ महिन्यांचे प्रेम 💕</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Tiro+Devanagari+Marathi:ital@0;1&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --rose: #C0546A;
+    --rose-light: #F5B8C4;
+    --rose-pale: #FDF0F2;
+    --gold: #D4A853;
+    --gold-light: #F0D89A;
+    --cream: #FEF8F0;
+    --deep: #1A0A0E;
+    --ink: #3D1C24;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Tiro Devanagari Marathi', serif;
+    background: var(--deep);
+    color: var(--cream);
+    overflow-x: hidden;
+  }
+
+  @media (pointer: fine) {
+    body { cursor: none; }
+    .cursor, .cursor-trail { display: block; }
+  }
+
+  .cursor {
+    display: none;
+    position: fixed;
+    width: 12px; height: 12px;
+    background: var(--rose-light);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.15s ease;
+    mix-blend-mode: screen;
+  }
+  .cursor-trail {
+    display: none;
+    position: fixed;
+    width: 32px; height: 32px;
+    border: 1px solid rgba(192,84,106,0.4);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transition: all 0.25s ease;
+  }
+
+  #bgCanvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+  }
+
+  section {
+    position: relative;
+    z-index: 1;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5rem 1.25rem 4rem;
+  }
+
+  /* ——— HERO ——— */
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 5rem 1.25rem 6rem;
+  }
+
+  .hero-eyebrow {
+    font-size: clamp(0.65rem, 2.5vw, 0.85rem);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0;
+    animation: fadeUp 1s ease 0.3s forwards;
+    margin-bottom: 1.2rem;
+    line-height: 1.8;
+  }
+
+  .deco-line {
+    width: 40px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 0.6rem;
+  }
+
+  .hero-number {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(6rem, 28vw, 18rem);
+    font-weight: 700;
+    line-height: 0.85;
+    background: linear-gradient(135deg, var(--rose) 0%, var(--gold) 50%, var(--rose-light) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    opacity: 0;
+    animation: fadeUp 1.2s ease 0.5s forwards, glow3d 4s ease-in-out 2s infinite alternate;
+  }
+
+  @keyframes glow3d {
+    0%   { filter: drop-shadow(0 0 20px rgba(192,84,106,0.3)) drop-shadow(0 20px 60px rgba(192,84,106,0.15)); }
+    100% { filter: drop-shadow(0 0 40px rgba(212,168,83,0.5)) drop-shadow(0 30px 80px rgba(212,168,83,0.2)); }
+  }
+
+  .hero-months {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.3rem, 5vw, 3.5rem);
+    font-style: italic;
+    color: var(--gold-light);
+    opacity: 0;
+    animation: fadeUp 1s ease 0.9s forwards;
+    margin-top: -0.3rem;
+  }
+
+  .hero-marathi {
+    font-size: clamp(1.1rem, 3.5vw, 1.8rem);
+    color: var(--rose-light);
+    opacity: 0;
+    animation: fadeUp 1s ease 1.1s forwards;
+    margin-top: 0.6rem;
+    letter-spacing: 0.03em;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(0.85rem, 2.5vw, 1.1rem);
+    color: rgba(254,248,240,0.5);
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    opacity: 0;
+    animation: fadeUp 1s ease 1.3s forwards;
+    margin-top: 1.5rem;
+    max-width: 480px;
+    line-height: 1.8;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0;
+    animation: fadeUp 1s ease 2s forwards;
+    color: rgba(254,248,240,0.3);
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+  }
+  .scroll-line {
+    width: 1px; height: 50px;
+    background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse {
+    0%, 100% { transform: scaleY(0.3); opacity: 0.3; }
+    50%       { transform: scaleY(1);   opacity: 0.8; }
+  }
+
+  /* ——— HEARTS ——— */
+  .hearts-container {
+    position: fixed; top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none; z-index: 2; overflow: hidden;
+  }
+  .floating-heart {
+    position: absolute; bottom: -5%;
+    opacity: 0;
+    animation: floatUp linear infinite;
+  }
+  @keyframes floatUp {
+    0%   { transform: translateY(0) rotate(0deg) scale(0.5);   opacity: 0; }
+    10%  { opacity: 0.6; }
+    90%  { opacity: 0.3; }
+    100% { transform: translateY(-110vh) rotate(360deg) scale(1.2); opacity: 0; }
+  }
+
+  /* ——— COUNTER SECTION ——— */
+  .counter-section { flex-direction: column; gap: 2.5rem; }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 4.5vw, 3rem);
+    font-style: italic;
+    text-align: center;
+    color: var(--gold-light);
+    opacity: 0;
+    line-height: 1.4;
+  }
+  .section-title .mr { font-family: 'Tiro Devanagari Marathi', serif; font-style: normal; display: block; font-size: 0.65em; color: rgba(240,216,154,0.65); margin-top: 0.3rem; }
+  .section-title.visible { animation: fadeUp 0.8s ease forwards; }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    max-width: 860px;
+    width: 100%;
+  }
+  @media (min-width: 640px) {
+    .stats-grid { grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+  }
+
+  .stat-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(192,84,106,0.2);
+    border-radius: 18px;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    opacity: 0;
+    transform: translateY(30px) rotateX(15deg);
+  }
+  .stat-card.visible { animation: cardReveal 0.8s ease forwards; }
+  @media (hover: hover) {
+    .stat-card:hover {
+      transform: translateY(-8px) rotateX(-5deg) scale(1.02);
+      box-shadow: 0 30px 60px rgba(192,84,106,0.2), 0 0 0 1px rgba(212,168,83,0.3);
+      border-color: rgba(212,168,83,0.4);
+    }
+  }
+  @keyframes cardReveal { to { opacity: 1; transform: translateY(0) rotateX(0deg); } }
+
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 7vw, 3.5rem);
+    font-weight: 700;
+    color: var(--rose-light);
+    display: block; line-height: 1;
+  }
+  .stat-label {
+    font-size: clamp(0.6rem, 1.8vw, 0.75rem);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(254,248,240,0.4);
+    margin-top: 0.4rem;
+    display: block;
+    line-height: 1.6;
+  }
+  .stat-label .mr { display: block; font-family: 'Tiro Devanagari Marathi', serif; text-transform: none; letter-spacing: 0; font-size: 1.1em; color: rgba(254,248,240,0.55); }
+  .stat-icon { font-size: 1.4rem; margin-bottom: 0.6rem; display: block; }
+
+  /* ——— 3D HEART ——— */
+  .heart3d-section {
+    flex-direction: column;
+    gap: 2.5rem;
+    padding: 5rem 1.25rem;
+  }
+
+  #heartCanvas3d { border-radius: 50%; touch-action: none; cursor: grab; max-width: 90vw; max-height: 90vw; }
+  #heartCanvas3d:active { cursor: grabbing; }
+
+  .heart-message { text-align: center; max-width: 560px; padding: 0 0.5rem; }
+  .heart-message h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 5vw, 3rem);
+    font-style: italic;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+  .heart-message .h2-mr {
+    font-family: 'Tiro Devanagari Marathi', serif;
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    color: var(--rose-light);
+    display: block;
+    margin-bottom: 1rem;
+  }
+  .heart-message p {
+    font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+    font-weight: 300;
+    color: rgba(254,248,240,0.58);
+    line-height: 2;
+  }
+
+  /* ——— TIMELINE ——— */
+  .timeline-section { flex-direction: column; gap: 3rem; padding: 5rem 1.25rem; }
+
+  .timeline { max-width: 680px; width: 100%; position: relative; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%; top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--rose) 20%, var(--gold) 80%, transparent);
+    transform: translateX(-50%);
+  }
+
+  /* Mobile: single column left */
+  @media (max-width: 540px) {
+    .timeline::before { left: 18px; transform: none; }
+    .timeline-item,
+    .timeline-item:nth-child(even) {
+      flex-direction: row !important;
+      padding-left: 44px;
+    }
+    .timeline-dot { position: absolute; left: 12px; }
+    .timeline-content,
+    .timeline-item:nth-child(even) .timeline-content { text-align: left !important; flex: 1; }
+    .timeline-spacer { display: none !important; }
+  }
+
+  .timeline-item {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+    align-items: center;
+    opacity: 0;
+    position: relative;
+  }
+  .timeline-item.visible { animation: fadeUp 0.8s ease forwards; }
+  .timeline-item:nth-child(odd)  { flex-direction: row; }
+  .timeline-item:nth-child(even) { flex-direction: row-reverse; }
+
+  .timeline-content { flex: 1; }
+  .timeline-item:nth-child(odd)  .timeline-content { text-align: right; }
+  .timeline-item:nth-child(even) .timeline-content { text-align: left; }
+
+  .timeline-dot {
+    width: 14px; height: 14px;
+    background: var(--rose);
+    border-radius: 50%;
+    flex-shrink: 0;
+    animation: dotPulse 2s ease-in-out infinite;
+  }
+  @keyframes dotPulse {
+    0%, 100% { box-shadow: 0 0 20px rgba(192,84,106,0.6), 0 0 40px rgba(192,84,106,0.3); }
+    50%       { box-shadow: 0 0 30px rgba(212,168,83,0.8), 0 0 60px rgba(212,168,83,0.4); }
+  }
+  .timeline-spacer { flex: 1; }
+
+  .timeline-month {
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.25rem;
+  }
+  .timeline-text {
+    font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+    color: var(--cream);
+    line-height: 1.65;
+  }
+  .timeline-text .mr {
+    display: block;
+    font-size: 0.88em;
+    color: rgba(254,248,240,0.55);
+    margin-top: 0.2rem;
+  }
+
+  /* ——— LETTER ——— */
+  .letter-section { padding: 5rem 1.25rem; }
+
+  .letter-card {
+    max-width: 680px; width: 100%;
+    background: rgba(254,248,240,0.04);
+    border: 1px solid rgba(212,168,83,0.2);
+    border-radius: 22px;
+    padding: clamp(1.8rem, 5vw, 3.5rem);
+    position: relative;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 40px 120px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05);
+  }
+  .letter-card::before {
+    content: '"';
+    position: absolute;
+    top: -1rem; left: 2rem;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(5rem, 15vw, 10rem);
+    color: rgba(192,84,106,0.1);
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .letter-text {
+    font-size: clamp(1rem, 2.8vw, 1.2rem);
+    font-weight: 300;
+    line-height: 2.1;
+    color: rgba(254,248,240,0.78);
+    font-style: italic;
+    margin-bottom: 1rem;
+  }
+  .letter-text-mr {
+    font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+    line-height: 2.2;
+    color: rgba(254,248,240,0.55);
+    margin-bottom: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(212,168,83,0.12);
+  }
+  .letter-sign {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.2rem, 3.5vw, 1.5rem);
+    color: var(--gold-light);
+    text-align: right;
+  }
+
+  /* ——— FINALE ——— */
+  .finale { flex-direction: column; text-align: center; gap: 1.5rem; padding: 6rem 1.25rem; }
+
+  .finale-number {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 10vw, 7rem);
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--rose-light), var(--gold), var(--rose-light));
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 30px rgba(192,84,106,0.4));
+    line-height: 1.1;
+  }
+  .finale-mr {
+    font-size: clamp(1.2rem, 3.5vw, 1.8rem);
+    color: var(--rose-light);
+    margin-top: -0.5rem;
+  }
+  .finale p {
+    font-size: clamp(0.95rem, 2.5vw, 1.2rem);
+    color: rgba(254,248,240,0.5);
+    font-weight: 300;
+    max-width: 460px;
+    line-height: 1.8;
+  }
+
+  .cta-button {
+    display: inline-block;
+    padding: 0.9rem 2.2rem;
+    border: 1px solid rgba(212,168,83,0.4);
+    border-radius: 50px;
+    color: var(--gold-light);
+    font-family: 'Tiro Devanagari Marathi', serif;
+    font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+    letter-spacing: 0.15em;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    background: transparent;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .cta-button:hover, .cta-button:active {
+    background: rgba(212,168,83,0.1);
+    border-color: var(--gold);
+    box-shadow: 0 0 30px rgba(212,168,83,0.2);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="bgCanvas"></canvas>
+<div class="hearts-container" id="heartsContainer"></div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-trail" id="cursorTrail"></div>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eyebrow"><span class="deco-line"></span> प्रेमाची एक अनोखी गोष्ट <span class="deco-line"></span></p>
+  <div class="hero-number">४९</div>
+  <div class="hero-months">months of love</div>
+  <div class="hero-marathi">महिन्यांचं सुंदर प्रेम</div>
+  <p class="hero-subtitle">प्रत्येक दिवस एक नवीन अध्याय,<br>प्रत्येक रात्र एक नवीन स्वप्न.</p>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <span>खाली जा</span>
+  </div>
+</section>
+
+<!-- COUNTER -->
+<section class="counter-section">
+  <h2 class="section-title">
+    आपल्या प्रेमाचे आकडे
+    <span class="mr">The numbers of our love</span>
+  </h2>
+  <div class="stats-grid" id="statsGrid">
+    <div class="stat-card">
+      <span class="stat-icon">🌅</span>
+      <span class="stat-number" data-count="1491">0</span>
+      <span class="stat-label"><span class="mr">एकत्र घालवलेले दिवस</span>Days Together</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-icon">🌙</span>
+      <span class="stat-number" data-count="35784">0</span>
+      <span class="stat-label"><span class="mr">आपल्या आठवणींचे तास</span>Hours of Us</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-icon">💌</span>
+      <span class="stat-number" data-count="49">0</span>
+      <span class="stat-label"><span class="mr">सुंदर महिने</span>Beautiful Months</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-icon">✨</span>
+      <span class="stat-number" data-count="inf">0</span>
+      <span class="stat-label"><span class="mr">जपलेल्या आठवणी</span>Memories Made</span>
+    </div>
+  </div>
+</section>
+
+<!-- 3D HEART -->
+<section class="heart3d-section">
+  <canvas id="heartCanvas3d" width="320" height="320"></canvas>
+  <div class="heart-message">
+    <h2>Still falling, every day
+      <span class="h2-mr">रोज नव्याने प्रेमात पडतो</span>
+    </h2>
+    <p>
+      चव्वेचाळीस महिने म्हणजे फक्त वेळ नाही — ते हजारो छोटे-छोटे क्षण आहेत, एकत्र विणलेले सुंदर धागे.
+      प्रत्येक सकाळी एकमेकांसाठी जगणं, प्रत्येक हसण्यात जगणं — हे सगळं मिळून एक जादू बनते.
+    </p>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="timeline-section">
+  <h2 class="section-title">
+    आपल्या गोष्टीचे अध्याय
+    <span class="mr">Chapters of our story</span>
+  </h2>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-content">
+        <div class="timeline-month">महिना १ · Month 1</div>
+        <div class="timeline-text">
+          पहिल्या "हॅलो"ने सारं बदलून टाकलं
+          <span class="mr">The very first hello that changed everything</span>
+        </div>
+      </div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-spacer"></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-spacer"></div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="timeline-month">महिना ७ · Month 7</div>
+        <div class="timeline-text">
+          "आवडणं" कधी "प्रेम" झालं, कळलंच नाही
+          <span class="mr">When "like" quietly became something deeper</span>
+        </div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-content">
+        <div class="timeline-month">महिना १२ · Month 12</div>
+        <div class="timeline-text">
+          एक वर्ष पूर्ण — आणि हे तर फक्त सुरुवात होती
+          <span class="mr">One whole year — and still just the beginning</span>
+        </div>
+      </div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-spacer"></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-spacer"></div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="timeline-month">महिना २४ · Month 24</div>
+        <div class="timeline-text">
+          दोन वर्षे, आणि अजूनही रोज नव्याने ओळखतो
+          <span class="mr">Two years deep, still discovering you daily</span>
+        </div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-content">
+        <div class="timeline-month">महिना ३६ · Month 36</div>
+        <div class="timeline-text">
+          तीन वर्षे: विश्वास आणि हास्याने बांधलेलं विश्व
+          <span class="mr">Three years: a universe built of trust and laughter</span>
+        </div>
+      </div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-spacer"></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-spacer"></div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="timeline-month">महिना ४९ ✨ · Month 49</div>
+        <div class="timeline-text">
+          इथे, आत्ता, तुझ्यावर अजूनही मनापासून प्रेम
+          <span class="mr">Here, now, still endlessly in love with you</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOVE LETTER -->
+<section class="letter-section">
+  <div class="letter-card">
+    <p class="letter-text">
+      Forty-nine is not a round number, and that's exactly what makes it ours. It isn't measured in milestones — it's measured in the ten thousand ordinary Tuesdays we made extraordinary simply by being together. You are not just the person I love. You are the reason every month feels like arriving home.
+    </p>
+    <p class="letter-text-mr">
+      एकोणपन्नास हा गोल आकडा नाही, आणि तेच याला आपलं बनवतं. हे कोणत्या मोठ्या क्षणांनी नाही, तर त्या हजारो साध्या मंगळवारांनी मोजलं जातं, जे आपण एकत्र असताना खास झाले. तू फक्त माझं प्रेम नाहीस — तू माझं घर आहेस.
+    </p>
+    <div class="letter-sign">— सदैव तुझाच / तुझीच 💕</div>
+  </div>
+</section>
+
+<!-- FINALE -->
+<section class="finale">
+  <div class="finale-number">४९ आणि पुढे…</div>
+  <div class="finale-mr">49 &amp; counting</div>
+  <p>पुढच्या ४९ महिन्यांसाठी, आणि त्यानंतरच्या प्रत्येक अध्यायासाठी.</p>
+  <button class="cta-button" onclick="launchFireworks()">साजरं करूया ✨</button>
+</section>
+
+<script>
+// ——— CURSOR (desktop only) ———
+const cursorEl = document.getElementById('cursor');
+const trailEl  = document.getElementById('cursorTrail');
+let mx=0,my=0,tx=0,ty=0;
+if (window.matchMedia('(pointer: fine)').matches) {
+  document.addEventListener('mousemove', e => {
+    mx=e.clientX; my=e.clientY;
+    cursorEl.style.left=(mx-6)+'px'; cursorEl.style.top=(my-6)+'px';
+  });
+  setInterval(()=>{
+    tx+=(mx-tx)*0.18; ty+=(my-ty)*0.18;
+    trailEl.style.left=(tx-16)+'px'; trailEl.style.top=(ty-16)+'px';
+  },16);
+}
+
+// ——— BACKGROUND ———
+const bgCanvas=document.getElementById('bgCanvas');
+const bgCtx=bgCanvas.getContext('2d');
+let BW,BH,stars=[];
+function resizeBg(){ BW=bgCanvas.width=window.innerWidth; BH=bgCanvas.height=window.innerHeight; }
+resizeBg(); window.addEventListener('resize',resizeBg);
+for(let i=0;i<160;i++) stars.push({x:Math.random()*window.innerWidth,y:Math.random()*window.innerHeight,r:Math.random()*1.2+0.2,alpha:Math.random(),speed:Math.random()*0.3+0.05,drift:(Math.random()-0.5)*0.2});
+function drawBg(t){
+  bgCtx.clearRect(0,0,BW,BH);
+  const g=bgCtx.createRadialGradient(BW/2,BH*0.4,0,BW/2,BH*0.4,BW*0.8);
+  g.addColorStop(0,'rgba(45,12,20,1)'); g.addColorStop(0.5,'rgba(18,5,10,1)'); g.addColorStop(1,'rgba(6,2,4,1)');
+  bgCtx.fillStyle=g; bgCtx.fillRect(0,0,BW,BH);
+  const n1=bgCtx.createRadialGradient(BW*0.7,BH*0.3,0,BW*0.7,BH*0.3,BW*0.5);
+  n1.addColorStop(0,'rgba(192,84,106,0.05)'); n1.addColorStop(1,'transparent');
+  bgCtx.fillStyle=n1; bgCtx.fillRect(0,0,BW,BH);
+  stars.forEach(s=>{
+    s.alpha+=Math.sin(t*0.001+s.x)*0.01;
+    s.alpha=Math.max(0.1,Math.min(0.9,s.alpha));
+    s.x+=s.drift; s.y+=s.speed;
+    if(s.y>BH){s.y=-5;s.x=Math.random()*BW;}
+    bgCtx.beginPath(); bgCtx.arc(s.x,s.y,s.r,0,Math.PI*2);
+    bgCtx.fillStyle=`rgba(245,184,196,${s.alpha})`; bgCtx.fill();
+  });
+  requestAnimationFrame(drawBg);
+}
+requestAnimationFrame(drawBg);
+
+// ——— FLOATING HEARTS ———
+const hc=document.getElementById('heartsContainer');
+['♥','💕','✨','💗','✿','❀','♡'].forEach((sym,i)=>{
+  for(let j=0;j<3;j++){
+    const h=document.createElement('div');
+    h.classList.add('floating-heart');
+    h.textContent=sym;
+    h.style.left=Math.random()*100+'%';
+    h.style.animationDuration=(12+Math.random()*14)+'s';
+    h.style.animationDelay=(Math.random()*14)+'s';
+    h.style.fontSize=(0.6+Math.random()*1.1)+'rem';
+    hc.appendChild(h);
+  }
+});
+
+// ——— 3D HEART ———
+const hc3=document.getElementById('heartCanvas3d');
+const hCtx=hc3.getContext('2d');
+// Responsive canvas size
+function sizeHeart(){
+  const s=Math.min(320,window.innerWidth*0.82);
+  hc3.width=hc3.height=Math.round(s);
+}
+sizeHeart(); window.addEventListener('resize',sizeHeart);
+
+let hAngle=0,hDrag=false,hLastX=0;
+function heartPoint(t,sc){ return{x:16*Math.pow(Math.sin(t),3)*sc,y:-(13*Math.cos(t)-5*Math.cos(2*t)-2*Math.cos(3*t)-Math.cos(4*t))*sc}; }
+function drawHeart3D(angle){
+  const W3=hc3.width,H3=hc3.height;
+  hCtx.clearRect(0,0,W3,H3);
+  const cx=W3/2,cy=H3/2,sc=W3/32;
+  const slices=28,cosA=Math.cos(angle),sinA=Math.sin(angle);
+  for(let i=slices;i>=0;i--){
+    const d=(i/slices)*2-1,z=d*28*cosA,xO=d*28*sinA,yO=d*28*0.15;
+    const fade=(z+28)/56,r=Math.round(192+(255-192)*fade*0.3),g2=Math.round(84+(120-84)*fade*0.2),b=Math.round(106+(150-106)*fade*0.2);
+    hCtx.beginPath();
+    for(let j=0;j<=100;j++){ const t2=(j/100)*Math.PI*2,p=heartPoint(t2,sc); j===0?hCtx.moveTo(cx+p.x+xO,cy+p.y-yO):hCtx.lineTo(cx+p.x+xO,cy+p.y-yO); }
+    hCtx.closePath(); hCtx.fillStyle=`rgba(${r},${g2},${b},${0.3+fade*0.5})`; hCtx.fill();
+  }
+  hCtx.beginPath();
+  for(let j=0;j<=100;j++){ const t2=(j/100)*Math.PI*2,p=heartPoint(t2,sc); j===0?hCtx.moveTo(cx+p.x,cy+p.y):hCtx.lineTo(cx+p.x,cy+p.y); }
+  hCtx.closePath();
+  const gl=hCtx.createLinearGradient(cx-sc*5,cy-sc*5,cx+sc*4,cy+sc*5);
+  gl.addColorStop(0,'rgba(255,220,230,0.25)'); gl.addColorStop(0.5,'rgba(212,168,83,0.1)'); gl.addColorStop(1,'rgba(0,0,0,0)');
+  hCtx.fillStyle=gl; hCtx.fill();
+}
+let animId;
+function animHeart(){ hAngle+=0.008; drawHeart3D(hAngle); animId=requestAnimationFrame(animHeart); }
+animHeart();
+// Mouse drag
+hc3.addEventListener('mousedown',e=>{hDrag=true;hLastX=e.clientX;cancelAnimationFrame(animId);});
+document.addEventListener('mouseup',()=>{if(hDrag){hDrag=false;animHeart();}});
+document.addEventListener('mousemove',e=>{if(!hDrag)return;hAngle+=(e.clientX-hLastX)*0.01;hLastX=e.clientX;drawHeart3D(hAngle);});
+// Touch drag
+hc3.addEventListener('touchstart',e=>{hDrag=true;hLastX=e.touches[0].clientX;cancelAnimationFrame(animId);},{passive:true});
+document.addEventListener('touchend',()=>{if(hDrag){hDrag=false;animHeart();}});
+document.addEventListener('touchmove',e=>{if(!hDrag)return;hAngle+=(e.touches[0].clientX-hLastX)*0.01;hLastX=e.touches[0].clientX;drawHeart3D(hAngle);},{passive:true});
+
+// ——— SCROLL ANIMATIONS ———
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      if(e.target.classList.contains('stat-card')){
+        const numEl=e.target.querySelector('[data-count]');
+        const t=numEl.getAttribute('data-count');
+        if(t==='inf'){numEl.textContent='∞';return;}
+        animCount(numEl,parseInt(t));
+      }
+    }
+  });
+},{threshold:0.12});
+document.querySelectorAll('.section-title,.timeline-item,.stat-card').forEach(el=>obs.observe(el));
+document.querySelectorAll('.stat-card').forEach((c,i)=>{c.style.animationDelay=(i*0.12)+'s';});
+
+function animCount(el,target){
+  const dur=1800,start=performance.now();
+  function tick(now){
+    const p=Math.min((now-start)/dur,1),e2=1-Math.pow(1-p,3);
+    el.textContent=Math.round(e2*target).toLocaleString('mr-IN');
+    if(p<1)requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
+// ——— FIREWORKS ———
+function launchFireworks(){
+  const cv=document.createElement('canvas');
+  cv.style.cssText='position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9000;';
+  cv.width=window.innerWidth; cv.height=window.innerHeight;
+  document.body.appendChild(cv);
+  const ctx=cv.getContext('2d'),parts=[];
+  const colors=['#C0546A','#F5B8C4','#D4A853','#F0D89A','#FFFFFF','#FF91A4','#FFD700'];
+  const syms=['♥','★','✦','•','❀'];
+  for(let b=0;b<12;b++){
+    setTimeout(()=>{
+      const bx=cv.width*0.15+Math.random()*cv.width*0.7;
+      const by=cv.height*0.1+Math.random()*cv.height*0.55;
+      for(let i=0;i<55;i++){
+        const a=(Math.PI*2*i)/55,sp=2+Math.random()*5;
+        parts.push({x:bx,y:by,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,color:colors[Math.floor(Math.random()*colors.length)],alpha:1,size:2+Math.random()*4,sym:Math.random()>0.7?syms[Math.floor(Math.random()*syms.length)]:null,decay:0.012+Math.random()*0.01});
+      }
+    },b*200);
+  }
+  function loop(){
+    ctx.clearRect(0,0,cv.width,cv.height);
+    for(let i=parts.length-1;i>=0;i--){
+      const p=parts[i]; p.x+=p.vx; p.y+=p.vy; p.vy+=0.08; p.alpha-=p.decay;
+      if(p.alpha<=0){parts.splice(i,1);continue;}
+      ctx.globalAlpha=p.alpha;
+      if(p.sym){ctx.font=`${p.size*3}px serif`;ctx.fillStyle=p.color;ctx.fillText(p.sym,p.x,p.y);}
+      else{ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);ctx.fillStyle=p.color;ctx.fill();}
+    }
+    ctx.globalAlpha=1;
+    parts.length>0?requestAnimationFrame(loop):setTimeout(()=>cv.remove(),500);
+  }
+  requestAnimationFrame(loop);
+}
+</script>
+</body>
+</html>
